@@ -1,0 +1,96 @@
+body {
+    font-size: 22px;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #212529;
+    color: #fff;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 1.75rem;
+    margin-bottom: 2.25rem;
+}
+
+table {
+    width: 40rem;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 80px;
+    background-color: #0000009c;
+    border-collapse: collapse;
+    border-color: #fff;
+
+}
+
+tbody {
+    border-collapse: separate;
+}
+
+tr {
+    border-width: 1px !important;
+}
+
+td {
+    border-width: 1px !important;
+    padding: 0;
+    background-color: #3c3c3c;
+}
+
+#tfooter {
+
+    padding: 0;
+    height: fit-content;
+}
+
+input {
+    text-align: center;
+    height: fit-content;
+    width: fit-content;
+    border: none;
+    padding: 0;
+    padding-left: 4px;
+    background-color: #3c3c3c;
+    color: white;
+}
+
+.btn {
+    width: 33%;
+    height: 3rem;
+    margin: -1px;
+}
+
+p {
+    margin: 0;
+    font-size: 18px;
+}
+
+.btn-outline-light{
+    font-weight: bold;
+    --bs-btn-bg: #f8f9fa;
+    --bs-btn-color: #000;
+    --bs-btn-border-color: #f8f9fa;
+    --bs-btn-hover-color: #f8f9fa;
+    --bs-btn-hover-bg: #000;
+    --bs-btn-hover-border-color: #f8f9fa;
+    --bs-btn-active-color: #000;
+    --bs-btn-active-bg: #f8f9fa;
+    --bs-btn-active-border-color: #f8f9fa;
+    border-bottom-left-radius: 99px;
+    border-bottom-right-radius: 99px;
+    border-top-left-radius: 99px;
+    border-top-right-radius: 99px;
+    
+}
+
+.botonchico {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 10% 0 10%;
+}
+
+#simbolos {
+    margin-top: -5px;
+    font-size: 25px;
+    padding: 0;
+}

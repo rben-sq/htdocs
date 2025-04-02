@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+<body>
+
+    <h1>Verificar si un número es par o impar</h1>
+    <input type="number" id="numero" placeholder="Ingrese un número">
+    <button onclick="verificarNumero()">Verificar</button>
+    <h2 id="resultado"></h2>
+
+    <script>
+        function verificarNumero() {
+            let numero = document.getElementById("numero").value;
+            if (numero === "") {
+                document.getElementById("resultado").innerText = "Por favor, ingresa un número.";
+                return;
+            }
+
+            fetch(`apiPrueba.php?numero=${numero}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById("resultado").innerText = data.error;
+                    } else {
+                        document.getElementById("resultado").innerText = `El número ${data.numero} es ${data.resultado}`;
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        }
+    </script>
+</body>
+</html>

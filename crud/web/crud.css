@@ -1,0 +1,26 @@
+body {
+    background: url("imagenes/LDaR-fondo.png") center repeat;
+  }
+#boton-iz {
+    margin-left: 10px;
+}
+#boton-add {
+    margin-bottom: 5em;
+}
+#boton-ad {
+    margin-bottom: 5em;
+}
+label {
+    color: #db0000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.5;
+}
+.btn-primary {
+    background-color: #db0000;
+    border-color: #db0000;
+}
+#vol {
+    margin-bottom: 2em;
+}

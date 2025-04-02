@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Ingresos y Gastos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="estilo.css">
+    <script>
+        let contadorFilas = 8; // Inicia con el número de filas existentes
+
+        function enviarDatos() {
+            const datos = [];
+            for (let i = 0; i <= contadorFilas; i++) {
+                const anio = document.getElementById(`anio${i}`).value;
+                const ingreso = document.getElementById(`ingreso${i}`).value;
+                const gasto = document.getElementById(`gasto${i}`).value;
+                if (anio && ingreso && gasto) {
+                    datos.push({ anio, ingreso: parseFloat(ingreso), gasto: parseFloat(gasto) });
+                }
+            }
+            
+            const jsonData = JSON.stringify(datos, null, 2);
+
+            fetch('http://localhost:5000/api_python', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json'},
+                body: jsonData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Datos recibidos de la API:", data); // Para depuración
+                    if (Array.isArray(data)) {
+                        mostrarResultados(data);
+                        console.log("Datos enviados y procesados correctamente.");
+                    } else {
+                        throw new Error("La API no devolvió un array válido.");
+                    }
+                })
+
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+        
+        function mostrarResultados(data) {
+            const tablaResultados = document.getElementById("tablaResultados");
+            tablaResultados.innerHTML = "";
+            let totalIngresos=0;
+            let totalGastos=0;
+            let totalBeneficio="";
+//          document.getElementById("jsonPython").textContent = JSON.stringify(datos, null, 2);
+
+            data.forEach(item => {
+                totalIngresos+=item.ingreso;
+                totalGastos+=item.gasto;
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.anio}</td>
+                    <td>${item.ingreso}</td>
+                    <td>${item.gasto}</td>
+                    <td>${item.beneficio}</td>
+                    <td>${item.ingreso - item.gasto}</td>
+                `;
+                tablaResultados.appendChild(row);
+            });
+
+            if (totalIngresos>totalGastos) {
+                totalBeneficio="Sí"
+            } else {
+                totalBeneficio="No"
+            }
+
+            const row = document.createElement("tr");
+                row.innerHTML = `
+                    <th>Total años: </th>
+                    <th>${totalIngresos}</th>
+                    <th>${totalGastos}</th>
+                    <th>${totalBeneficio}</th>
+                    <th>${totalIngresos - totalGastos}</th>
+                `;
+                tablaResultados.appendChild(row);
+        }
+
+
+        function agregarFila() {
+            contadorFilas++;
+            const tbody = document.querySelector("#tbodyFormulario");
+            
+            const nuevaFila = tbody.insertRow(contadorFilas);
+            nuevaFila.innerHTML = `
+            <td><input type="number" id="anio${contadorFilas}" min="${contadorFilas+2000}" max="2100" placeholder="${contadorFilas+2000}"></td>
+            <td><input type="number" id="ingreso${contadorFilas}" min="0" step="1"></td>
+            <td><input type="number" id="gasto${contadorFilas}" min="0" step="1"></td>
+            `;
+        }
+
+        function eliminarFila() {
+            if (contadorFilas>-1) {
+                document.querySelector("#tbodyFormulario").deleteRow(contadorFilas);
+                contadorFilas--;
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>Formulario de Ingresos y Gastos</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Año</th>
+                    <th>Ingresos</th>
+                    <th>Gastos</th>
+                </tr>
+            </thead>
+            <form onsubmit="event.preventDefault(); enviarDatos();">
+                <tbody id="tbodyFormulario">
+                    <script>
+                        for (let i = 0; i <= contadorFilas; i++) {
+                            document.write(`
+                            <tr>
+                                <td><input type="number" id="anio${i}" min="${i+2000}" max="2100" placeholder="${i+2000}"></td>
+                                <td><input type="number" id="ingreso${i}" min="0" step="1"></td>
+                                <td><input type="number" id="gasto${i}" min="0" step="1"></td>
+                            </tr>
+                                `);
+                            }
+                    </script>
+                    <tr id="ultimaFila">
+                        <th id="tfooter" colspan="3">
+                            <button type="button" class="botonchico btn btn-outline-light" onclick="eliminarFila()">
+                            <p id="simbolos">-</p>
+                            </button>
+                            <button type="submit" class="btn btn-outline-light">
+                                <p>
+                                    Enviar
+                                </p>
+                            </button>
+                            <button type="button" class="botonchico btn btn-outline-light" onclick="agregarFila()">
+                                <p id="simbolos">+</p>
+                            </button>
+                        </th>
+                    </tr>
+                </tbody>
+            </form>
+        </table>
+    
+<!--     <h3>JSON python</h3>
+    <pre id="jsonPython"></pre> -->
+
+    <h2 id="Resultado"></h2>
+
+    <table id="tabla2" border="1" >
+        <thead>
+            <tr>
+                <th>Año</th>
+                <th>Ingresos</th>
+                <th>Gastos</th>
+                <th>Hay beneficio?</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody id="tablaResultados"></tbody>
+    </table>
+</body>
+
+</html>
