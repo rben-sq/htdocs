@@ -1,11 +1,11 @@
 <?php
-$servidor = 'localhost:3306';
+$servidor = 'mariadb';
 $basedatos = 'nefli';
 $tabla = 'peliculas';
 $usuario = 'root';
 $contrasena = 'root';
 
-$mysqli = mysqli_connect($servidor, $usuario, $contrasena, $basedatos); 
+$mysqli = new mysqli($servidor, $usuario, $contrasena, $basedatos); 
 
 if ($mysqli->connect_error) {
     die('Error de Conexión (' . $mysqli->connect_errno . ') '
