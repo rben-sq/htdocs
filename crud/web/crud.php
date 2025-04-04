@@ -32,7 +32,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM $tabla ORDER BY id DESC");
 					while($res = mysqli_fetch_array($result)){ 
 				?>
 					<tr class="align-middle">
-						<td scope="row"><?php echo '<img width="90" height="120px" src="subidacrud/'.$res['poster'].'">'; ?></td>
+						<td scope="row"><?php echo '<img class="poster" src="subidacrud/'.$res['poster'].'">'; ?></td>
 						<td><?php echo $res['titulo']; ?></td>
 						<td><?php echo $res['director']; ?></td>
 						<td><?php echo $res['fecha']; ?></td>

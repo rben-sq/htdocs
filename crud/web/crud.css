@@ -1,6 +1,22 @@
 body {
-    background: url("../imagenes/LDaR-fondo.png") center repeat;
+    background: url("/imagenes/LDaR-fondo.png") center repeat;
+    text-align: center;
   }
+
+.table {
+    width: 90%;
+    margin: auto;
+}
+
+td, th {
+    text-align: center;
+}
+
+.poster {
+    height: fit-content;
+    width: auto;
+}
+
 #boton-iz {
     margin-left: 10px;
 }
