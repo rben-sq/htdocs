@@ -20,7 +20,7 @@ $result = mysqli_query($mysqli, "SELECT * FROM $tabla ORDER BY id DESC");
 			<table class="table table-dark table-hover">
 				<thead>
 					<tr>
-						<th scope="col">Poster</th>
+						<th id="celdaImg" scope="col">Poster</th>
 						<th scope="col">Título</th>
 						<th scope="col">Director</th>
 						<th scope="col">Año</th>
@@ -32,19 +32,19 @@ $result = mysqli_query($mysqli, "SELECT * FROM $tabla ORDER BY id DESC");
 					while($res = mysqli_fetch_array($result)){ 
 				?>
 					<tr class="align-middle">
-						<td scope="row"><?php echo '<img class="poster" src="subidacrud/'.$res['poster'].'">'; ?></td>
-						<td><?php echo $res['titulo']; ?></td>
-						<td><?php echo $res['director']; ?></td>
-						<td><?php echo $res['fecha']; ?></td>
-						<td><?php echo $res['duracion']; ?></td>
-						<td><?php echo "<a class=\"btn btn-light bnt-sm\" href=\"edit.php?id=$res[id]\">Edit</a> | <a class=\"btn btn-light bnt-sm\" href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Estás seguro?')\">Borrar</a>"?></td>
+						<td id="celdaImg" scope="row"><?php echo '<img class="poster" src="subidacrud/'.$res['poster'].'">'; ?></td>
+						<td><p><?php echo $res['titulo']; ?></p></td>
+						<td><p><?php echo $res['director']; ?></p></td>
+						<td><p><?php echo $res['fecha']; ?></p></td>
+						<td><p><?php echo $res['duracion']; ?></p></td>
+						<td id="celdaImg" class="botones"><p><?php echo "<a class=\"btn btn-light bnt-sm\" href=\"edit.php?id=$res[id]\">Editar</a> | <a class=\"btn btn-light bnt-sm\" href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Estás seguro?')\">Borrar</a>"?></p></td>
 					</tr>
 					<?php } ?>
 				</tbody>
 			</table>
 		</div>
 		<div class="text-center">
-			<a class="btn btn-primary" id="boton-add" href="add.html">Añadir película</a>
+			<a class="btn btn-danger" id="boton-add" href="add.html">Añadir película</a>
 		</div>
 	</div>
 	 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

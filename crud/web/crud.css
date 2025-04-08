@@ -10,30 +10,48 @@ body {
 
 td, th {
     text-align: center;
+    max-width: 15vw;
+}
+
+td {
+    vertical-align: middle !important;
+    font-size: 27px;
+}
+
+.botones {
+    width: 15vw;
 }
 
 .poster {
-    height: fit-content;
-    width: auto;
+    height: 24vh;
+    aspect-ratio: 5/7;
+}
+
+#celdaImg {
+    padding: 12px 0 12px 0;
+    width: 11vw;
+}
+
+p {
+    margin-bottom: 2rem;
 }
 
 #boton-iz {
     margin-left: 10px;
 }
 #boton-add {
-    margin-bottom: 5em;
-}
-#boton-ad {
+    margin-top: 1em;
     margin-bottom: 5em;
 }
 label {
-    color: #db0000;
+    background-color: #00000091;
+    color: #ff0000;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.125rem;
     font-weight: 600;
     line-height: 1.5;
 }
-.btn-primary {
+.btn-danger {
     background-color: #db0000;
     border-color: #db0000;
 }
